@@ -1,0 +1,222 @@
+/* =================== SEARCH PAGE STYLES =================== */
+
+body {
+  background-color: #fff;
+  color: #000;
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* ----------------- SEARCH SECTION ----------------- */
+
+.search-section {
+  min-height: 100vh;
+  padding: 140px 20px 60px 20px;
+  text-align: center;
+  background-color: #fff;
+}
+
+.search-title {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #111;
+}
+
+.search-form {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 25px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* ----------------- INPUT FIELDS ----------------- */
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
+  width: 100%;
+}
+
+.input-group label {
+  font-weight: 600;
+  color: #111;
+  font-size: 0.95rem;
+}
+
+.input-group select {
+  width: 100%;
+  padding: 0.6rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  background-color: #fff;
+  color: #333;
+}
+
+/* ----------------- SEARCH BUTTON ----------------- */
+
+.search-button {
+  padding: 0.9rem 2rem;
+  background-color: #000;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+  align-self: center;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.search-button:hover {
+  background-color: #333;
+}
+
+/* ----------------- RESULTS SECTION ----------------- */
+
+.results {
+  padding: 4rem 2rem;
+  background-color: #fff;
+}
+
+.results h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  color: #111;
+}
+
+.car-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.car-card {
+  background-color: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  width: 300px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.car-card:hover {
+  transform: translateY(-5px);
+}
+
+.car-card img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.car-info {
+  padding: 1rem;
+  text-align: left;
+  color: #000;
+}
+
+.car-info h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.car-info p {
+  margin: 0.3rem 0;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.price {
+  color: #000;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+
+
+
+/* =================== MOBILE RESPONSIVE =================== */
+@media (max-width: 768px) {
+  .search-section {
+    padding: 100px 10px 40px 10px;
+  }
+
+  .search-title {
+    font-size: 1.8rem;
+  }
+
+  .search-form {
+    padding: 1.5rem;
+    gap: 1rem;
+  }
+
+  .input-group label {
+    font-size: 0.85rem;
+  }
+
+  .input-group select {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+
+  .search-button {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  .car-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .car-card {
+    width: 90%;
+    max-width: 340px;
+  }
+
+  .car-info h3 {
+    font-size: 1rem;
+  }
+
+  .car-info p {
+    font-size: 0.85rem;
+  }
+
+  .price {
+    font-size: 1rem;
+  }
+
+  .modal-content {
+    max-width: 95%;
+    max-height: 70vh;
+  }
+
+  .close-modal {
+    font-size: 32px;
+    right: 20px;
+    top: 10px;
+  }
+}
+
+
+
+/* =================== END =================== */

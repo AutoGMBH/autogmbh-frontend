@@ -1,0 +1,358 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f7f7f7;
+  color: #222;
+}
+
+/* Header */
+.site-header {
+  background-color: #000;
+  padding: 10px 0;
+}
+
+.site-header .container {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.header-logo {
+  height: 50px;
+}
+
+.header-nav a {
+  color: white;
+  margin-left: 20px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.header-nav a:hover {
+  color: #00ff88;
+}
+
+/* Layout i përgjithshëm */
+.car-details-wrapper {
+  max-width: 1200px;
+  margin: 40px auto;
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  padding: 0 20px;
+}
+
+/* Kolona e majtë për galerinë */
+.left-column {
+  flex: 1;
+}
+
+.main-image img {
+  width: 100%;
+  max-height: 450px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.4s ease;
+}
+
+.main-image img:hover {
+  transform: scale(1.01);
+}
+
+.thumbnails {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.thumbnails img {
+  width: 100px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.thumbnails img:hover {
+  transform: scale(1.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Kolona e djathtë për informacionin */
+.right-column {
+  flex: 1;
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.08);
+}
+
+/* Titulli i veturës */
+.right-column h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  font-weight: 700;
+  text-align: center;
+  color: #111;
+}
+
+/* Specifikimet e veturës */
+.specs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.specs p {
+  width: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: 500;
+  font-size: 14px;
+  color: #444;
+}
+
+.specs img {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 8px;
+  filter: grayscale(20%);
+}
+
+/* Çmimi */
+.price-box {
+  margin-top: 25px;
+  padding: 10px;
+  background-color: #f1f1f1;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.price-box p {
+  font-size: 20px;
+  margin: 6px 0;
+  font-weight: bold;
+  color: #111;
+}
+
+/* Përshkrimi */
+.description-box {
+  margin-top: 30px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 15px;
+  color: #555;
+  line-height: 1.7;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.description-box h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: #444;
+}
+
+/* Butonat e kontaktit */
+.contact-buttons {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.contact-buttons a {
+  display: inline-block;
+  margin: 8px 5px;
+  padding: 10px 20px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+.contact-buttons a:first-child {
+  background-color: green;
+}
+
+.contact-buttons a:last-child {
+  background-color: #007BFF;
+}
+
+/* Butoni për t'u kthyer mbrapa */
+.back-button {
+  max-width: 1200px;
+  margin: 30px auto 0;
+  padding-left: 20px;
+}
+
+.back-button a {
+  text-decoration: none;
+  color: #007BFF;
+  font-weight: bold;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.back-button a:hover {
+  color: #0056b3;
+}
+
+/* Footer */
+.footer {
+  background-color: #000;
+  color: white;
+  padding: 40px 20px;
+  text-align: center;
+  position: relative;
+  margin-top: 60px;
+}
+
+.footer .bg-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.08;
+  z-index: 0;
+}
+
+.footer h2,
+.footer .social-icons,
+.footer .contacts,
+.footer .copyright {
+  position: relative;
+  z-index: 1;
+}
+
+.footer h2 {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.footer .social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.footer .social-icons img {
+  width: 35px;
+  transition: transform 0.3s ease;
+}
+
+.footer .social-icons img:hover {
+  transform: scale(1.15);
+}
+
+.footer .contacts {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.footer .copyright {
+  font-size: 12px;
+  color: #aaa;
+}
+
+/* =================== MOBILE RESPONSIVE =================== */
+@media (max-width: 768px) {
+  .car-details-wrapper {
+    flex-direction: column;
+    gap: 20px;
+    padding: 0 15px;
+  }
+
+  .main-image img {
+    max-height: 250px;
+  }
+
+  .thumbnails img {
+    width: 70px;
+    height: 50px;
+  }
+
+  .right-column {
+    padding: 15px;
+  }
+
+  .right-column h2 {
+    font-size: 22px;
+  }
+
+  .specs {
+    gap: 15px;
+  }
+
+  .specs p {
+    width: 100px;
+    font-size: 13px;
+  }
+
+  .specs img {
+    width: 32px;
+    height: 32px;
+  }
+
+  .price-box p {
+    font-size: 18px;
+  }
+
+  .description-box {
+    font-size: 14px;
+    padding: 15px;
+  }
+
+  .contact-buttons a {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 14px;
+  }
+
+  .footer {
+    padding: 30px 15px;
+  }
+
+  .footer h2 {
+    font-size: 18px;
+  }
+
+  .footer .social-icons img {
+    width: 28px;
+  }
+
+  .footer .contacts {
+    font-size: 13px;
+  }
+
+  .footer .copyright {
+    font-size: 11px;
+  }
+
+  .back-button {
+    padding-left: 15px;
+  }
+
+  .breadcrumb {
+    padding: 0 15px;
+    font-size: 14px;
+  }
+}
+

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fahrzeugsuche A&A GMBH</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="search.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    .image-modal {
+      position: fixed;
+      z-index: 999;
+      padding-top: 60px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.8);
+      display: none;
+    }
+
+    .modal-content {
+      margin: auto;
+      display: block;
+      max-width: 90%;
+      max-height: 80vh;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 20px;
+      right: 35px;
+      color: #fff;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <img src="foto/Avni morina 3-01.png" alt="Logo" class="header-logo" />
+      <nav class="header-nav">
+        <a href="index.html" class="search-link">Startseite</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Suchbereich -->
+  <section class="search-section">
+    <div class="search-box">
+      <h1 class="search-title">FAHRZEUGSUCHE</h1>
+      <form class="search-form">
+        <div class="input-group">
+          <label><i class="fa-solid fa-car"></i> Marke:</label>
+          <select name="marka"><option value="">Marke wählen</option></select>
+        </div>
+
+        <div class="input-group">
+          <label><i class="fa-solid fa-car-side"></i> Modell:</label>
+          <select name="modeli"><option value="">Modell wählen</option></select>
+        </div>
+
+        <div class="input-group">
+          <label><i class="fa-solid fa-calendar-days"></i> Baujahr Min:</label>
+          <select name="vitiMin"><option value="">Mindestjahr wählen</option></select>
+        </div>
+        <div class="input-group">
+          <label><i class="fa-solid fa-calendar-days"></i> Baujahr Max:</label>
+          <select name="vitiMax"><option value="">Höchstjahr wählen</option></select>
+        </div>
+
+        <div class="input-group">
+          <label><i class="fa-solid fa-tachometer-alt"></i> KM Min:</label>
+          <select name="kmMin"><option value="">KM Min</option></select>
+        </div>
+        <div class="input-group">
+          <label><i class="fa-solid fa-tachometer-alt"></i> KM Max:</label>
+          <select name="kmMax"><option value="">KM Max</option></select>
+        </div>
+
+        <div class="input-group">
+          <label><i class="fa-solid fa-gas-pump"></i> Kraftstoff:</label>
+          <select name="karburanti">
+            <option value="">Kraftstoff wählen</option>
+            <option value="Benzin">Benzin</option>
+            <option value="Naftë">Diesel</option>
+            <option value="Hibride">Hybrid</option>
+            <option value="Elektrike">Elektro</option>
+          </select>
+        </div>
+
+        <button type="submit" class="search-button">
+          <i class="fa fa-search"></i> Suche starten
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Ergebnisse -->
+  <div id="results"></div>
+
+  <!-- Modal für Bilder -->
+  <div id="imageModal" class="image-modal">
+    <span class="close-modal">&times;</span>
+    <img class="modal-content" id="modalImg" />
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Kjo siguron që JS të ngarkohet vetëm pasi DOM është gati
+    });
+  </script>
+
+  <script src="search.js"></script>
+</body>
+</html>

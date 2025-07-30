@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="dynamicTitle">A&A GMBH</title>
+
+  <meta name="description" content="Details zum Fahrzeug, Baujahr, Kilometerstand, Kraftstofftyp, Preis und mehr. Kaufen Sie jetzt Ihr Auto online bei A&A Auto GmbH." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="details.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<!-- Header -->
+<header class="site-header">
+  <div class="container">
+    <img src="foto/Avni morina 3-01.png" alt="Logo" class="header-logo" />
+    <nav class="header-nav">
+      <a href="index.html">Startseite</a>
+      <a href="search.html">Suche</a>
+    </nav>
+  </div>
+</header>
+
+<!-- Breadcrumb -->
+<nav class="breadcrumb" style="max-width:1200px;margin:20px auto;padding:0 20px;">
+  <a href="index.html">Startseite</a> › <a href="search.html">Fahrzeugsuche</a> › <span>Details</span>
+</nav>
+
+<!-- Back Button -->
+<div class="back-button">
+  <a href="search.html">← Zurück zur Suche</a>
+</div>
+
+<!-- Hauptcontainer -->
+<section class="car-details-wrapper">
+
+  <!-- Linke Spalte: Galerie -->
+  <div class="left-column">
+    <div class="main-image">
+      <img id="mainPhoto" src="" alt="Hauptfoto" />
+    </div>
+    <div id="thumbnailContainer" class="thumbnails"></div>
+  </div>
+
+  <!-- Rechte Spalte: Informationen -->
+  <div class="right-column">
+    <h2 id="carTitle"></h2>
+    <div class="specs">
+      <p><img src="foto/calendar.png" alt="Baujahr" /> <span id="viti"></span></p>
+      <p><img src="foto/gauge.png" alt="Kilometerstand" /> <span id="kilometra"></span> KM</p>
+      <p><img src="foto/gearstick.png" alt="Getriebe" /> <span id="transmisioni"></span></p>
+      <p><img src="foto/gaspump.png" alt="Kraftstoff" /> <span id="karburanti"></span></p>
+      <p><img src="foto/engine.png" alt="Motor" /> <span id="motorri"></span></p>
+    </div>
+
+    <div class="price-box">
+      <p>PREIS: <span id="cmimi"></span> €</p>
+    </div>
+
+    <div class="description-box" style="margin-top: 30px; padding: 20px; border-radius: 10px; background-color: #f9f9f9;">
+      <h3 style="margin-bottom: 10px; color: #111; font-size: 20px; font-weight: 600;">Fahrzeugbeschreibung</h3>
+      <p id="description" style="color: #333; line-height: 1.6; white-space: pre-line; font-size: 16px;"></p>
+    </div>
+
+ <div class="contact-buttons" style="margin-top: 30px; text-align: center;">
+  <a href="tel:+41767096652" style="background:green;color:white;padding:10px 20px;border-radius:6px;text-decoration:none;margin:5px;display:inline-block;">
+    📞 Direkt anrufen
+  </a>
+  <a href="mailto:morina.avni@hotmail.com?subject=Fahrzeuganfrage" style="background:#007BFF;color:white;padding:10px 20px;border-radius:6px;text-decoration:none;margin:5px;display:inline-block;">
+    ✉️ Nachricht senden
+  </a>
+  <a href="https://wa.me/41767096652" target="_blank" style="background:#25D366;color:white;padding:10px 20px;border-radius:6px;text-decoration:none;margin:5px;display:inline-block;">
+    💬 WhatsApp
+  </a>
+</div>
+
+
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <img src="foto/footer.jpg" alt="Fahrzeugfoto" class="bg-img" />
+  <h2>FOLGEN SIE UNS</h2>
+ <div class="social-icons">
+  <a href="https://www.facebook.com/avni.morina.161" target="_blank">
+    <img src="foto/facebook.png" alt="Facebook">
+  </a>
+  <a href="https://wa.me/41767096652" target="_blank">
+    <img src="foto/Whatsaap.png" alt="WhatsApp">
+  </a>
+</div>
+
+  <div class="contacts">
+    <p>Tel: +41 0767096652</p>
+    <p>Email: morina.avni@hotmail.com</p>
+    <p>Adresse: Aarau-Buchs, Schweiz</p>
+  </div>
+  <div class="copyright">
+    &copy; 2025 A&A Auto GmbH. Alle Rechte vorbehalten.
+  </div>
+</footer>
+
+<!-- JS -->
+<script src="car-details.js"></script>
+<script>
+  // Ndërron titullin sipas veturës
+  const observer = new MutationObserver(() => {
+    const emri = document.getElementById('carTitle').textContent;
+    if (emri) {
+      document.getElementById('dynamicTitle').textContent = `${emri} - Fahrzeugdetails`;
+      observer.disconnect();
+    }
+  });
+  observer.observe(document.getElementById('carTitle'), { childList: true });
+</script>
+</body>
+</html>

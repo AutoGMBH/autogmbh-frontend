@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lista e Veturave - Admin</title>
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    body {
+      background-color: #111;
+      color: white;
+      font-family: 'Montserrat', sans-serif;
+      padding: 2rem;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .car-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .car-card {
+      background-color: #222;
+      border-radius: 10px;
+      padding: 1rem;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    }
+
+    .car-card h3 {
+      margin-top: 0;
+      font-size: 1.2rem;
+    }
+
+    .car-card button {
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background-color: #e00;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .car-card button:hover {
+      background-color: #c00;
+    }
+  </style>
+</head>
+<body>
+  <h1>Lista e Veturave</h1>
+  <div class="car-list" id="carList"></div>
+
+  <script>
+    async function fetchCars() {
+      const res = await fetch('https://autogmbh-backend.onrender.com/api/search');
+      const cars = await res.json();
+
+      const container = document.getElementById('carList');
+      container.innerHTML = '';
+
+      cars.forEach(car => {
+        const card = document.createElement('div');
+        card.className = 'car-card';
+        card.innerHTML = `
+          <h3>${car.marka} ${car.modeli}</h3>
+          <p>Viti: ${car.viti}</p>
+          <p>Kilometra: ${car.kilometra}</p>
+          <p>Motorri: ${car.motorri || 'N/A'}</p>
+          <p>Çmimi: ${car.cmimi} €</p>
+          <button onclick="deleteCar('${car._id}')">Fshi</button>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    async function deleteCar(id) {
+      const confirmDelete = confirm("A jeni i sigurt që doni ta fshini këtë veturë?");
+      if (!confirmDelete) return;
+
+      try {
+        const res = await fetch(`http://localhost:5000/api/add-car/${id}`, {
+          method: 'DELETE'
+        });
+
+        const result = await res.json();
+        alert(result.message || "Vetura u fshi.");
+        fetchCars();
+      } catch (err) {
+        alert("Gabim gjatë fshirjes së veturës.");
+      }
+    }
+
+    fetchCars();
+  </script>
+</body>
+</html>
