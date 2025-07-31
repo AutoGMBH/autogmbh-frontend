@@ -51,61 +51,17 @@
     </div>
   </header>
 
-  <!-- Suchbereich -->
+  <!-- Titulli -->
   <section class="search-section">
     <div class="search-box">
       <h1 class="search-title">FAHRZEUGSUCHE</h1>
-      <form class="search-form">
-        <div class="input-group">
-          <label><i class="fa-solid fa-car"></i> Marke:</label>
-          <select name="marka"><option value="">Marke wählen</option></select>
-        </div>
-
-        <div class="input-group">
-          <label><i class="fa-solid fa-car-side"></i> Modell:</label>
-          <select name="modeli"><option value="">Modell wählen</option></select>
-        </div>
-
-        <div class="input-group">
-          <label><i class="fa-solid fa-calendar-days"></i> Baujahr Min:</label>
-          <select name="vitiMin"><option value="">Mindestjahr wählen</option></select>
-        </div>
-        <div class="input-group">
-          <label><i class="fa-solid fa-calendar-days"></i> Baujahr Max:</label>
-          <select name="vitiMax"><option value="">Höchstjahr wählen</option></select>
-        </div>
-
-        <div class="input-group">
-          <label><i class="fa-solid fa-tachometer-alt"></i> KM Min:</label>
-          <select name="kmMin"><option value="">KM Min</option></select>
-        </div>
-        <div class="input-group">
-          <label><i class="fa-solid fa-tachometer-alt"></i> KM Max:</label>
-          <select name="kmMax"><option value="">KM Max</option></select>
-        </div>
-
-        <div class="input-group">
-          <label><i class="fa-solid fa-gas-pump"></i> Kraftstoff:</label>
-          <select name="karburanti">
-            <option value="">Kraftstoff wählen</option>
-            <option value="Benzin">Benzin</option>
-            <option value="Naftë">Diesel</option>
-            <option value="Hibride">Hybrid</option>
-            <option value="Elektrike">Elektro</option>
-          </select>
-        </div>
-
-        <button type="submit" class="search-button">
-          <i class="fa fa-search"></i> Suche starten
-        </button>
-      </form>
     </div>
   </section>
 
-  <!-- Ergebnisse -->
+  <!-- Rezultatet -->
   <div id="results"></div>
 
-  <!-- Modal für Bilder -->
+  <!-- Modal për Foto -->
   <div id="imageModal" class="image-modal">
     <span class="close-modal">&times;</span>
     <img class="modal-content" id="modalImg" />
@@ -114,7 +70,10 @@
   <!-- JavaScript -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      // Kjo siguron që JS të ngarkohet vetëm pasi DOM është gati
+      // Nëse funksioni yt quhet fetchAndDisplayCars, thirre këtu:
+      if (typeof fetchAndDisplayCars === 'function') {
+        fetchAndDisplayCars();
+      }
     });
   </script>
 
