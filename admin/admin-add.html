@@ -96,20 +96,17 @@
         <option value="">Modell wählen</option>
       </select>
 
-
-      <label for="transmisioni"></label>
-       <select name="transmisioni" id="transmisioni" required>
-       <option value="">Zgjedh Transmisionin</option>
-       <option value="Automatik">Automatik</option>
+      <select name="transmisioni" id="transmisioni" required>
+        <option value="">Zgjedh Transmisionin</option>
+        <option value="Automatik">Automatik</option>
         <option value="Manual">Manual</option>
       </select>
 
+      <input type="number" name="viti" id="viti" placeholder="Baujahr" required>
+      <input type="number" name="kilometra" id="kilometra" placeholder="Kilometerstand" required>
+      <input type="text" name="motorri" id="motorri" placeholder="Motor (z.B.: 2000 CM3)" required>
 
-      <input type="number" name="viti" placeholder="Baujahr" required>
-      <input type="number" name="kilometra" placeholder="Kilometerstand" required>
-      <input type="text" name="motorri" placeholder="Motor (z.B.: 2000 CM3)" required>
-
-      <select name="karburanti" required>
+      <select name="karburanti" id="karburanti" required>
         <option value="">Kraftstoff wählen</option>
         <option value="Benzin">Benzin</option>
         <option value="Naftë">Diesel</option>
@@ -117,9 +114,9 @@
         <option value="Elektrike">Elektrisch</option>
       </select>
 
-      <textarea name="foto" placeholder="Foto-URLs mit Komma getrennt (z.B. url1, url2)" required></textarea>
-      <textarea name="description" placeholder="Beschreibung des Fahrzeugs" required></textarea>
-      <input type="number" name="cmimi" placeholder="Preis (€)" required>
+      <textarea name="foto" id="foto" placeholder="Foto-URLs mit Komma getrennt (z.B. url1, url2)" required></textarea>
+      <textarea name="description" id="description" placeholder="Beschreibung des Fahrzeugs" required></textarea>
+      <input type="number" name="cmimi" id="cmimi" placeholder="Preis (€)" required>
 
       <button type="submit">Fahrzeug hinzufügen</button>
     </form>
@@ -176,32 +173,38 @@
       e.preventDefault();
 
       const form = e.target;
-     const data = {
-      marka: form.marka.value,
-      modeli: form.modeli.value,
-      viti: parseInt(form.viti.value),
-      kilometra: parseInt(form.kilometra.value),
-      motorri: form.motorri.value,
-      karburanti: form.karburanti.value,
-      foto: form.foto.value.split(',').map(f => f.trim()),
-      description: form.description.value,
-      cmimi: parseInt(form.cmimi.value),
-      transmisioni: form.transmisioni.value
-};
-  
+      const data = {
+        marka: form.marka.value,
+        modeli: form.modeli.value,
+        transmisioni: form.transmisioni.value,
+        viti: parseInt(form.viti.value),
+        kilometra: parseInt(form.kilometra.value),
+        motorri: form.motorri.value,
+        karburanti: form.karburanti.value,
+        foto: form.foto.value.split(',').map(f => f.trim()),
+        description: form.description.value,
+        cmimi: parseInt(form.cmimi.value)
+      };
+
       try {
-       const response = await fetch('https://autogmbh-backend.onrender.com/api/add-car', {
-       method: 'POST',
-       headers: { 'Content-Type': 'application/json' },
-       body: JSON.stringify(data)
-      });
+        const response = await fetch('https://autogmbh-backend.onrender.com/api/add-car', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
 
         const result = await response.json();
-        alert('Fahrzeug wurde erfolgreich hinzugefügt!');
-        form.reset();
+        if (response.ok) {
+          alert('Fahrzeug wurde erfolgreich hinzugefügt!');
+          form.reset();
+        } else {
+          console.error('Server response:', result);
+          alert('Fehler beim Hinzufügen des Fahrzeugs!');
+        }
+
       } catch (error) {
         console.error('Fehler beim Hinzufügen:', error);
-        alert('Fehler beim Hinzufügen des Fahrzeugs!');
+        alert('Netzwerkfehler beim Hinzufügen!');
       }
     });
   </script>
