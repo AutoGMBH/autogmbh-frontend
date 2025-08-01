@@ -11,11 +11,11 @@ body {
 /* ----------------- SEARCH SECTION ----------------- */
 
 .search-section {
-  min-height: 100vh;
-  padding: 140px 20px 60px 20px;
+  padding: 40px 20px;
   text-align: center;
-  background-color: #f9f9f9;
+  background-color: #fff;
 }
+
 
 .search-title {
   font-size: 2.8rem;
