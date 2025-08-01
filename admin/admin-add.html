@@ -176,18 +176,19 @@
       e.preventDefault();
 
       const form = e.target;
-      const data = {
-        marka: form.marka.value,
-        modeli: form.modeli.value,
-        viti: parseInt(form.viti.value),
-        kilometra: parseInt(form.kilometra.value),
-        motorri: form.motorri.value,
-        karburanti: form.karburanti.value,
-        foto: form.foto.value.split(',').map(f => f.trim()),
-        description: form.description.value,
-        cmimi: parseInt(form.cmimi.value)
-      };
-
+     const data = {
+      marka: form.marka.value,
+      modeli: form.modeli.value,
+      viti: parseInt(form.viti.value),
+      kilometra: parseInt(form.kilometra.value),
+      motorri: form.motorri.value,
+      karburanti: form.karburanti.value,
+      foto: form.foto.value.split(',').map(f => f.trim()),
+      description: form.description.value,
+      cmimi: parseInt(form.cmimi.value),
+      transmisioni: form.transmisioni.value
+};
+  
       try {
        const response = await fetch('https://autogmbh-backend.onrender.com/api/add-car', {
        method: 'POST',
