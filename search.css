@@ -11,94 +11,28 @@ body {
 /* ----------------- SEARCH SECTION ----------------- */
 
 .search-section {
-  padding: 40px 20px;
+  padding: 60px 20px 20px;
   text-align: center;
   background-color: #fff;
 }
 
-
 .search-title {
   font-size: 2.8rem;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1rem;
   font-weight: 700;
   text-transform: uppercase;
   color: #111;
 }
 
-/* ----------------- SEARCH FORM (nëse përdoret) ----------------- */
-
-.search-form {
-  background: #fff;
-  border-radius: 25px;
-  padding: 2rem;
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
-}
-
-.input-group {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.4rem;
-  width: 100%;
-}
-
-.input-group label {
-  font-weight: 600;
-  color: #111;
-  font-size: 0.95rem;
-}
-
-.input-group select {
-  width: 100%;
-  padding: 0.6rem;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-  background-color: #fff;
-  color: #333;
-}
-
-/* ----------------- SEARCH BUTTON ----------------- */
-
-.search-button {
-  padding: 0.9rem 2rem;
-  background-color: #111;
-  color: white;
-  border: none;
-  border-radius: 30px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  align-self: center;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.search-button:hover {
-  background-color: #333;
-}
-
 /* ----------------- RESULTS SECTION ----------------- */
 
-.results {
-  padding: 4rem 2rem;
+#results {
+  padding: 2rem 1rem 4rem;
   background-color: #f9f9f9;
-}
-
-.results h2 {
-  text-align: center;
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
-  text-transform: uppercase;
-  color: #111;
+  min-height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 /* ----------------- CAR CARDS ----------------- */
@@ -194,30 +128,11 @@ body {
 
 @media (max-width: 768px) {
   .search-section {
-    padding: 100px 10px 40px 10px;
+    padding: 40px 10px 20px;
   }
 
   .search-title {
     font-size: 2rem;
-  }
-
-  .search-form {
-    padding: 1.5rem;
-    gap: 1rem;
-  }
-
-  .input-group label {
-    font-size: 0.85rem;
-  }
-
-  .input-group select {
-    font-size: 0.9rem;
-    padding: 0.5rem;
-  }
-
-  .search-button {
-    padding: 0.8rem 1.5rem;
-    font-size: 0.95rem;
   }
 
   .car-cards {
@@ -228,18 +143,6 @@ body {
   .car-card {
     width: 90%;
     max-width: 340px;
-  }
-
-  .car-info h3 {
-    font-size: 1rem;
-  }
-
-  .car-info p {
-    font-size: 0.85rem;
-  }
-
-  .price {
-    font-size: 1rem;
   }
 
   .modal-content {
@@ -253,5 +156,3 @@ body {
     top: 10px;
   }
 }
-
-/* =================== END =================== */
