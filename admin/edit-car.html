@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Edito Veturën</title>
+  <link rel="stylesheet" href="../style.css" />
+<style>
+    body {
+      background-color: #111;
+      color: white;
+      font-family: 'Montserrat', sans-serif;
+      padding: 2rem;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .admin-back {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    .admin-back button {
+      padding: 0.6rem 1.5rem;
+      background-color: #444;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .admin-back button:hover {
+      background-color: #666;
+    }
+
+    .car-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .car-card {
+      background-color: #222;
+      border-radius: 10px;
+      padding: 1rem;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    }
+
+    .car-card h3 {
+      margin-top: 0;
+      font-size: 1.2rem;
+    }
+
+    .car-card button {
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background-color: #e00;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .car-card button:hover {
+      background-color: #c00;
+    }
+  </style>
+
+
+
+
+</head>
+<body>
+  <div class="container">
+    <h1>Edito Veturën</h1>
+    <form id="editCarForm">
+      <label for="brand">Marka:</label>
+      <select id="brand" name="brand" required></select>
+
+      <label for="model">Modeli:</label>
+      <select id="model" name="model" required></select>
+
+      <label for="year">Viti:</label>
+      <input type="number" id="year" name="year" required>
+
+      <label for="price">Çmimi (€):</label>
+      <input type="number" id="price" name="price" required>
+
+      <label for="image">Link i fotos kryesore:</label>
+      <input type="text" id="image" name="image" required>
+
+      <label for="images">Foto tjera (URL, të ndara me presje):</label>
+      <input type="text" id="images" name="images">
+
+      <label for="description">Përshkrimi:</label>
+      <textarea id="description" name="description" required></textarea>
+
+      <button type="submit">Ruaj Ndryshimet</button>
+    </form>
+    <p id="message"></p>
+  </div>
+
+  <script>
+    const brandModelData = {
+      "BMW": ["1 Series", "2 Series", "3 Series", "4 Series", "5 Series", "6 Series", "7 Series", "8 Series", "X1", "X2", "X3", "X4", "X5", "X6", "X7", "M2", "M3", "M4", "M5", "M6", "Z3", "Z4"],
+      "Mercedes": ["A-Class", "B-Class", "C-Class", "E-Class", "S-Class", "CLA", "CLS", "GLA", "GLB", "GLC", "GLE", "GLS", "G-Class", "Vito", "V-Class", "EQC", "Sprinter"],
+      "Audi": ["A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "Q2", "Q3", "Q5", "Q7", "Q8", "TT", "R8", "E-Tron"]
+      // mund të shtosh të tjerat sipas nevojës
+    };
+
+    const brandSelect = document.getElementById('brand');
+    const modelSelect = document.getElementById('model');
+
+    // Mbush dropdown-in e markave
+    Object.keys(brandModelData).forEach(brand => {
+      const option = document.createElement('option');
+      option.value = brand;
+      option.textContent = brand;
+      brandSelect.appendChild(option);
+    });
+
+    // Kur ndryshon marka, përditëso modelin
+    brandSelect.addEventListener('change', () => {
+      const selectedBrand = brandSelect.value;
+      const models = brandModelData[selectedBrand] || [];
+
+      modelSelect.innerHTML = '';
+      models.forEach(model => {
+        const option = document.createElement('option');
+        option.value = model;
+        option.textContent = model;
+        modelSelect.appendChild(option);
+      });
+    });
+
+    // Merr ID nga URL
+    const params = new URLSearchParams(window.location.search);
+    const carId = params.get('id');
+
+    // Ngarko të dhënat e veturës
+    fetch(`https://autogmbh-backend.onrender.com/api/search/${carId}`)
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('brand').value = data.brand;
+        brandSelect.dispatchEvent(new Event('change')); // aktivizo ngarkimin e modeleve
+        document.getElementById('model').value = data.model;
+        document.getElementById('year').value = data.year;
+        document.getElementById('price').value = data.price;
+        document.getElementById('image').value = data.image;
+        document.getElementById('images').value = data.images.join(', ');
+        document.getElementById('description').value = data.description;
+      })
+      .catch(err => {
+        console.error(err);
+        document.getElementById('message').textContent = 'Gabim gjatë ngarkimit të veturës.';
+      });
+
+    // Dërgo PUT për përditësim
+    document.getElementById('editCarForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const updatedCar = {
+        brand: brandSelect.value,
+        model: modelSelect.value,
+        year: document.getElementById('year').value,
+        price: document.getElementById('price').value,
+        image: document.getElementById('image').value,
+        images: document.getElementById('images').value.split(',').map(i => i.trim()),
+        description: document.getElementById('description').value
+      };
+
+      try {
+        const res = await fetch(`https://autogmbh-backend.onrender.com/api/edit-car/${carId}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(updatedCar)
+        });
+
+        const result = await res.json();
+        if (result.success) {
+          document.getElementById('message').textContent = 'Veturë u përditësua me sukses!';
+        } else {
+          document.getElementById('message').textContent = 'Gabim gjatë përditësimit.';
+        }
+      } catch (err) {
+        console.error(err);
+        document.getElementById('message').textContent = 'Gabim gjatë lidhjes me serverin.';
+      }
+    });
+  </script>
+</body>
+</html>
