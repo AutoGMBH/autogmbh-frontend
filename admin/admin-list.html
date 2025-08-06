@@ -55,21 +55,15 @@
       font-size: 1.2rem;
     }
 
-    .car-card .btn-group {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 1rem;
-    }
-
-    .car-card button,
-    .car-card a {
-      padding: 0.4rem 1rem;
+    .car-card button {
+      margin-top: 0.5rem;
+      padding: 0.5rem 1rem;
       border: none;
       border-radius: 5px;
-      text-decoration: none;
       font-size: 0.9rem;
       color: white;
       cursor: pointer;
+      margin-right: 5px;
     }
 
     .car-card .delete-btn {
@@ -114,15 +108,12 @@
           card.className = 'car-card';
           card.innerHTML = `
             <h3>${car.marka} ${car.modeli}</h3>
-            <img src="${car.fotoKryesore}" alt="Foto" width="100%" style="border-radius: 5px;" />
-            <p><strong>Viti:</strong> ${car.viti}</p>
-            <p><strong>Kilometra:</strong> ${car.kilometra}</p>
-            <p><strong>Motorri:</strong> ${car.motorri || 'N/A'}</p>
-            <p><strong>Çmimi:</strong> ${car.cmimi} €</p>
-            <div class="btn-group">
-              <button class="delete-btn" onclick="deleteCar('${car._id}')">Fshi</button>
-              <a class="edit-btn" href="edit-car.html?id=${car._id}">Edito</a>
-            </div>
+            <p>Viti: ${car.viti}</p>
+            <p>Kilometra: ${car.kilometra}</p>
+            <p>Motorri: ${car.motorri || 'N/A'}</p>
+            <p>Çmimi: ${car.cmimi} €</p>
+            <button class="delete-btn" onclick="deleteCar('${car._id}')">Fshi</button>
+            <button class="edit-btn" onclick="editCar('${car._id}', ${JSON.stringify(car).replace(/"/g, '&quot;')})">Edito</button>
           `;
           container.appendChild(card);
         });
@@ -149,6 +140,42 @@
         }
       } catch (err) {
         alert("Gabim gjatë fshirjes së veturës.");
+      }
+    }
+
+    async function editCar(id, car) {
+      const cmimi = prompt("Vendos çmimin e ri:", car.cmimi);
+      const pershkrimi = prompt("Vendos përshkrimin e ri:", car.description || "");
+      const fotoKryesore = prompt("Vendos URL e fotos kryesore:", car.foto?.[0] || "");
+      const fotoTjera = prompt("Vendos fotot tjera (të ndara me presje):", car.foto?.slice(1).join(", ") || "");
+
+      if (!cmimi || !fotoKryesore) {
+        alert("Çmimi dhe foto kryesore janë të detyrueshme.");
+        return;
+      }
+
+      const updated = {
+        cmimi: parseFloat(cmimi),
+        pershkrimi,
+        foto: [fotoKryesore, ...fotoTjera.split(',').map(f => f.trim()).filter(Boolean)]
+      };
+
+      try {
+        const res = await fetch(`${BACKEND_URL}/api/edit-car/${id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(updated)
+        });
+
+        const result = await res.json();
+        if (result.success) {
+          alert("Veturë u përditësua me sukses!");
+          fetchCars();
+        } else {
+          alert("Gabim gjatë përditësimit.");
+        }
+      } catch (err) {
+        alert("Gabim në lidhje me serverin.");
       }
     }
 
