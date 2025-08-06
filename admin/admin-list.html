@@ -55,18 +55,37 @@
       font-size: 1.2rem;
     }
 
-    .car-card button {
+    .car-card .btn-group {
+      display: flex;
+      justify-content: space-between;
       margin-top: 1rem;
-      padding: 0.5rem 1rem;
-      background-color: #e00;
-      color: white;
+    }
+
+    .car-card button,
+    .car-card a {
+      padding: 0.4rem 1rem;
       border: none;
       border-radius: 5px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      color: white;
       cursor: pointer;
     }
 
-    .car-card button:hover {
+    .car-card .delete-btn {
+      background-color: #e00;
+    }
+
+    .car-card .delete-btn:hover {
       background-color: #c00;
+    }
+
+    .car-card .edit-btn {
+      background-color: #007bff;
+    }
+
+    .car-card .edit-btn:hover {
+      background-color: #0056b3;
     }
   </style>
 </head>
@@ -95,11 +114,15 @@
           card.className = 'car-card';
           card.innerHTML = `
             <h3>${car.marka} ${car.modeli}</h3>
-            <p>Viti: ${car.viti}</p>
-            <p>Kilometra: ${car.kilometra}</p>
-            <p>Motorri: ${car.motorri || 'N/A'}</p>
-            <p>Çmimi: ${car.cmimi} €</p>
-            <button onclick="deleteCar('${car._id}')">Fshi</button>
+            <img src="${car.fotoKryesore}" alt="Foto" width="100%" style="border-radius: 5px;" />
+            <p><strong>Viti:</strong> ${car.viti}</p>
+            <p><strong>Kilometra:</strong> ${car.kilometra}</p>
+            <p><strong>Motorri:</strong> ${car.motorri || 'N/A'}</p>
+            <p><strong>Çmimi:</strong> ${car.cmimi} €</p>
+            <div class="btn-group">
+              <button class="delete-btn" onclick="deleteCar('${car._id}')">Fshi</button>
+              <a class="edit-btn" href="edit-car.html?id=${car._id}">Edito</a>
+            </div>
           `;
           container.appendChild(card);
         });
