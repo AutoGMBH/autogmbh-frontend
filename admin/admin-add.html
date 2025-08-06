@@ -36,7 +36,7 @@
       gap: 1rem;
     }
 
-    input, select, textarea {
+    input, textarea {
       padding: 0.7rem;
       border-radius: 6px;
       border: none;
@@ -87,32 +87,13 @@
 
     <h2>Fahrzeug hinzufügen</h2>
     <form id="addCarForm">
-      <select name="marka" id="marka" required>
-        <option value="">Marke wählen</option>
-      </select>
-
-      <select name="modeli" id="modeli" required>
-        <option value="">Modell wählen</option>
-      </select>
-
-      <select name="transmisioni" id="transmisioni" required>
-        <option value="">Zgjedh Transmisionin</option>
-        <option value="Automatik">Automatik</option>
-        <option value="Manual">Manual</option>
-      </select>
-
+      <input type="text" name="marka" id="marka" placeholder="Marke" required>
+      <input type="text" name="modeli" id="modeli" placeholder="Modell" required>
+      <input type="text" name="transmisioni" id="transmisioni" placeholder="Transmision (z.B. Automatik)" required>
       <input type="number" name="viti" id="viti" placeholder="Baujahr" required>
       <input type="number" name="kilometra" id="kilometra" placeholder="Kilometerstand" required>
       <input type="text" name="motorri" id="motorri" placeholder="Motor (z.B.: 2000 CM3)" required>
-
-      <select name="karburanti" id="karburanti" required>
-        <option value="">Kraftstoff wählen</option>
-        <option value="Benzin">Benzin</option>
-        <option value="Naftë">Diesel</option>
-        <option value="Hibride">Hybrid</option>
-        <option value="Elektrike">Elektrisch</option>
-      </select>
-
+      <input type="text" name="karburanti" id="karburanti" placeholder="Kraftstoff (z.B. Benzin, Diesel)" required>
       <textarea name="foto" id="foto" placeholder="Foto-URLs mit Komma getrennt (z.B. url1, url2)" required></textarea>
       <textarea name="description" id="description" placeholder="Beschreibung des Fahrzeugs" required></textarea>
       <input type="number" name="cmimi" id="cmimi" placeholder="Preis (€)" required>
@@ -122,52 +103,6 @@
   </div>
 
   <script>
-    const markaModelData = {
-      "BMW": ["1 Series", "2 Series", "3 Series", "4 Series", "5 Series", "6 Series", "7 Series", "8 Series", "X1", "X2", "X3", "X4", "X5", "X6", "X7", "M2", "M3", "M4", "M5", "M6", "Z3", "Z4"],
-      "Audi": ["A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "Q2", "Q3", "Q5", "Q7", "Q8", "TT", "R8", "E-Tron"],
-      "Mercedes": ["A-Class", "B-Class", "C-Class", "E-Class", "S-Class", "CLA", "CLS", "GLA", "GLB", "GLC", "GLE", "GLS", "G-Class", "Vito", "V-Class", "EQC" ],
-      "Volkswagen": ["Golf", "Polo", "Passat", "Tiguan", "Touareg", "Jetta", "Arteon", "Up!", "ID.3", "ID.4", "Sharan", "Touran", "Transporter", "Multivan"],
-      "Toyota": ["Yaris", "Auris", "Corolla", "Avensis", "Camry", "RAV4", "C-HR", "Highlander", "Land Cruiser", "Hilux", "Prius", "Supra"],
-      "Opel": ["Adam", "Agila", "Astra", "Corsa", "Insignia", "Meriva", "Mokka", "Vectra", "Zafira", "Crossland", "Grandland"],
-      "Peugeot": ["106", "206", "207", "208", "306", "307", "308", "406", "407", "508", "2008", "3008", "5008", "RCZ"],
-      "Renault": ["Clio", "Twingo", "Megane", "Laguna", "Scenic", "Kadjar", "Koleos", "Talisman", "Captur", "Espace"],
-      "Hyundai": ["i10", "i20", "i30", "i40", "Accent", "Elantra", "Tucson", "Santa Fe", "Kona", "Veloster"],
-      "Kia": ["Picanto", "Rio", "Ceed", "Cerato", "Sportage", "Sorento", "Stinger", "Niro", "EV6"],
-      "Ford": ["Ka", "Fiesta", "Focus", "Fusion", "Mondeo", "C-Max", "S-Max", "Galaxy", "Kuga", "Ranger", "Mustang", "EcoSport"],
-      "Skoda": ["Fabia", "Rapid", "Scala", "Octavia", "Superb", "Kamiq", "Karoq", "Kodiaq", "Yeti"],
-      "Honda": ["Jazz", "Civic", "Accord", "HR-V", "CR-V", "Prelude", "Insight", "Legend"],
-      "Fiat": ["Panda", "Punto", "500", "500L", "500X", "Tipo", "Bravo", "Doblo", "Fiorino", "Freemont"],
-      "Nissan": ["Micra", "Note", "Almera", "Juke", "Qashqai", "X-Trail", "Navara", "Pathfinder", "Leaf", "GT-R"],
-      "Citroen": ["C1", "C2", "C3", "C3 Aircross", "C4", "C4 Cactus", "C5", "C5 Aircross", "Berlingo", "DS3", "DS4", "DS5"],
-      "Mitsubishi": ["Colt", "Lancer", "Outlander", "ASX", "Eclipse Cross", "Pajero", "Space Star"],
-      "Mazda": ["2", "3", "5", "6", "CX-3", "CX-5", "CX-30", "MX-5", "RX-8"],
-      "Chevrolet": ["Spark", "Aveo", "Cruze", "Captiva", "Orlando", "Malibu", "Trax"],
-      "Dacia": ["Logan", "Sandero", "Duster", "Lodgy", "Dokker", "Spring"]
-    };
-
-    const markaDropdown = document.getElementById("marka");
-    const modeliDropdown = document.getElementById("modeli");
-
-    Object.keys(markaModelData).forEach(marka => {
-      const opt = document.createElement("option");
-      opt.value = marka;
-      opt.textContent = marka;
-      markaDropdown.appendChild(opt);
-    });
-
-    markaDropdown.addEventListener("change", () => {
-      const selectedMarka = markaDropdown.value;
-      modeliDropdown.innerHTML = '<option value="">Modell wählen</option>';
-      if (markaModelData[selectedMarka]) {
-        markaModelData[selectedMarka].forEach(model => {
-          const opt = document.createElement("option");
-          opt.value = model;
-          opt.textContent = model;
-          modeliDropdown.appendChild(opt);
-        });
-      }
-    });
-
     document.getElementById('addCarForm').addEventListener('submit', async function(e) {
       e.preventDefault();
 
@@ -207,12 +142,9 @@
       }
     });
 
-function editCar(id) {
-  window.location.href = `/admin/edit-car.html?id=${id}`;
-}
-
-
+    function editCar(id) {
+      window.location.href = `/admin/edit-car.html?id=${id}`;
+    }
   </script>
-
 </body>
 </html>
