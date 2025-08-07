@@ -33,13 +33,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("transmisioni").textContent = data.transmisioni || "—";
     document.getElementById("description").textContent = data.description || "—";
 
-    // Statusi & Çmimi
-    const priceBox = document.querySelector(".price-box p span");
+    // Statusi ose çmimi
+    const priceElement = document.querySelector(".price-box p");
     if (data.statusi === "sold") {
-      priceBox.textContent = "Verkauft";
-      priceBox.style.color = "red";
+      priceElement.textContent = "VERKAUFT";
+      priceElement.style.color = "red";
+      priceElement.style.fontWeight = "bold";
+      priceElement.style.fontSize = "22px";
+      priceElement.style.textTransform = "uppercase";
     } else {
-      priceBox.textContent = `${data.cmimi} CHF`;
+      priceElement.textContent = `PREIS: ${data.cmimi} CHF`;
+      priceElement.style.color = "#111";
     }
 
   } catch (error) {
