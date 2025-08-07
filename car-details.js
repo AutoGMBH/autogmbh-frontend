@@ -29,10 +29,18 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("viti").textContent = data.viti;
     document.getElementById("kilometra").textContent = data.kilometra;
     document.getElementById("karburanti").textContent = data.karburanti;
-    document.getElementById("cmimi").textContent = data.cmimi;
     document.getElementById("motorri").textContent = data.motorri || "—";
     document.getElementById("transmisioni").textContent = data.transmisioni || "—";
     document.getElementById("description").textContent = data.description || "—";
+
+    // Statusi & Çmimi
+    const priceBox = document.querySelector(".price-box p span");
+    if (data.statusi === "sold") {
+      priceBox.textContent = "Verkauft";
+      priceBox.style.color = "red";
+    } else {
+      priceBox.textContent = `${data.cmimi} CHF`;
+    }
 
   } catch (error) {
     console.error("Fehler beim Laden der Fahrzeugdaten:", error);

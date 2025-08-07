@@ -271,6 +271,15 @@ body {
   color: #aaa;
 }
 
+/* Stil për veturat e shitura */
+.price-box .verkauft {
+  color: red;
+  font-weight: bold;
+  font-size: 22px;
+  text-transform: uppercase;
+}
+
+
 /* =================== MOBILE RESPONSIVE =================== */
 @media (max-width: 768px) {
   .car-details-wrapper {
