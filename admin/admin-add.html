@@ -36,7 +36,7 @@
       gap: 1rem;
     }
 
-    input, textarea {
+    input, textarea, select {
       padding: 0.7rem;
       border-radius: 6px;
       border: none;
@@ -98,6 +98,12 @@
       <textarea name="description" id="description" placeholder="Beschreibung des Fahrzeugs" required></textarea>
       <input type="number" name="cmimi" id="cmimi" placeholder="Preis (€)" required>
 
+      <!-- Fusha e re për statusin -->
+      <select name="statusi" id="statusi" required>
+        <option value="active">Aktiv</option>
+        <option value="sold">E shitur</option>
+      </select>
+
       <button type="submit">Fahrzeug hinzufügen</button>
     </form>
   </div>
@@ -117,7 +123,8 @@
         karburanti: form.karburanti.value,
         foto: form.foto.value.split(',').map(f => f.trim()),
         description: form.description.value,
-        cmimi: parseInt(form.cmimi.value)
+        cmimi: parseInt(form.cmimi.value),
+        statusi: form.statusi.value // Fusha e re për status
       };
 
       try {
